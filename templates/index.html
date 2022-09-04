@@ -1,128 +1,158 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            .main {
-                margin: 0 auto;
-                max-width: 400px;
-            }
-            .title {
-                /* margin: 0 auto; */
-                /* max-width: 400px; */
-                text-align: center;
-            }
-            .week {
-                font-size: 1.2rem;
-                margin-bottom: 0.8rem;
-                font-family: PremierSans-Bold,Arial,Helvetica Neue,Helvetica,sans-serif;
-                font-weight: 400;
-                text-align: center;
-                color: #ff2882;
-            }
-            .match {
-                background: #fff;
-                padding: 0.8rem 1rem;
-                border-bottom: 1px solid #efefef;
-                display: block;
-                color: #242424;
-                position: relative;
-                transition: all .2s;
-                line-height: 24px;
-                font-family: plfont;
-                font-weight: 400;
-                font-size: 1.2rem;
-                text-align: center;
-            }
-            .main {
-                border: 1px solid #e8e8e8;
-                border-top: 0;
-                border-radius: 0 0 3px 3px;
-                background: #fff;
-            }
-            .score {
-                background: #37003c;
-                color: #fff;
-                padding: 0;
-                line-height: 2.4rem;
-                font-size: 1.3rem;
-                min-width: 4.6rem;
-                text-align: center;
-                font-family: plfont;
-                font-weight: 400;
-            }
-            .score span {
-                line-height: 2rem;
-                vertical-align: baseline;
-                margin-right: 0;
-                padding: 0 0.6rem 0 0.5rem;
-                position: relative;
-                color: #37003c;
-            }
-            span {
-                display: inline-block;
-            }
-            .teamName {
-                width: 50px;
-                font-family: plfont-Bold;
-                font-weight: 400;
-                font-size: 1.4rem;
-                text-align: right;
-            }
-            .teamName.home {
-                text-align: right;
-            }
-            .teamName.away {
-                text-align: left;
-            }
-            .teamIcon {
-                width: 25px;
-                /* vertical-align: middle; */
-                padding: 5px;
-            }
-            .teamIcon img {
-                vertical-align: middle;
-                border: 0;
-            }
-            .score span:before {
-                content: " ";
-                display: block;
-                width: 0.1rem;
-                height: 1.5rem;
-                background: hsla(0,0%,100%,.2);
-                position: absolute;
-                top: 0.2rem;
-                left: 50%;
-            }
-            @font-face {
-                font-family: "plfont";
-                src: url("PremierLeagueW01-Regular.woff2") format('woff2');
-            }
+  <head>
+    <style>
+      .matchWeek {
+        margin: 0 auto;
+        max-width: 400px;
+        border: 1px solid #e8e8e8;
+        border-top: 0;
+        border-radius: 0 0 3px 3px;
+        background: #fff;
+      }
+      .title {
+        /* margin: 0 auto; */
+        /* max-width: 400px; */
+        text-align: center;
+      }
+      .week {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        font-family: plfont-Bold,
+          sans-serif;
+        font-weight: 400;
+        text-align: center;
+        color: #ff2882;
+      }
+      .day {
+        text-align: center;
+        display: block;
+        padding: 1rem 0.8rem;
+        font-size: 1.3rem;
+        color: #2f2f2f;
+        font-family: PremierSans-Bold, Arial, Helvetica Neue, Helvetica,
+          sans-serif;
+        font-weight: 400;
+      }
+      .time {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        background: #fff;
+        border: 1px solid #efefef;
+        font-size: 1.2rem;
+        color: #2f2f2f;
+        transition: all .2s;
+        min-width: 4.475rem;
+        min-height: 2.4rem;
+        text-align: center;
+      }
+      .match {
+        background: #fff;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #efefef;
+        display: block;
+        color: #242424;
+        position: relative;
+        transition: all 0.2s;
+        line-height: 24px;
+        font-family: plfont;
+        font-weight: 400;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      .score {
+        background: #37003c;
+        color: #fff;
+        padding: 0;
+        line-height: 2.4rem;
+        font-size: 1.3rem;
+        min-width: 4.6rem;
+        text-align: center;
+        font-family: plfont;
+        font-weight: 400;
+      }
+      .score span {
+        line-height: 2rem;
+        vertical-align: baseline;
+        margin-right: 0;
+        padding: 0 0.6rem 0 0.5rem;
+        position: relative;
+        color: #37003c;
+      }
+      span {
+        display: inline-block;
+      }
+      .teamName {
+        width: 55px;
+        font-family: plfont-Bold;
+        font-weight: 400;
+        font-size: 1.4rem;
+        text-align: right;
+      }
+      .teamName.home {
+        text-align: right;
+      }
+      .teamName.away {
+        text-align: left;
+      }
+      .teamIcon {
+        width: 25px;
+        /* vertical-align: middle; */
+        padding: 5px;
+      }
+      .teamIcon img {
+        vertical-align: middle;
+        border: 0;
+      }
+      .score span:before {
+        content: " ";
+        display: block;
+        width: 0.1rem;
+        height: 1.5rem;
+        background: hsla(0, 0%, 100%, 0.2);
+        position: absolute;
+        top: 0.2rem;
+        left: 50%;
+      }
+      @font-face {
+        font-family: "plfont";
+        src: url("PremierLeagueW01-Regular.woff2") format("woff2");
+      }
 
-            @font-face {
-                font-family: "plfont-Bold";
-                src: url("PremierLeagueW01-Bold.woff2") format('woff2');
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="main">
-            <div class="title">
-                <img src="pl_title.png">
-            </div>
-            <div class="week">{{ week }}</div>
-            <div class="matches">
-            {% for match in matches %}
-                <div class="match">
-                    <span class="teamName home">{{ match['home'] }}</span>
-                    <span class="teamIcon"><img src={{ match['home_icon'] }}></span>
-                    {{ match['score_html']|safe }}
-                    <span class="teamIcon"><img src={{ match['away_icon'] }}></span>
-                    <span class="teamName away">{{ match['away'] }}</span>
-                </div>
-            {% endfor %}
+      @font-face {
+        font-family: "plfont-Bold";
+        src: url("PremierLeagueW01-Bold.woff2") format("woff2");
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="matchWeek">
+      <div class="title">
+        <img src="pl_title.png" />
+      </div>
+      <div class="week">{{ week }}</div>
+      <div class="matches">
+        {% set dt = None %}
+        {% for idx, match in enumerate(matches) %}
+            {% if idx == 0 or matches[idx-1]['date'] != match['date'] %}
+                <div class="day">{{ match['date'] }}</div>
+            {% endif %}
+        <div class="match">
+          <span class="teamName home">{{ match['home'] }}</span>
+          <span class="teamIcon"><img src={{ match['home_icon'] }}></span>
+          {% if match['score_html'] %}
+            {{ match['score_html']|safe }}
+          {% else %}
+            <span class="time">{{ match['time'] }}</span>
+          {% endif %}
+          <span class="teamIcon"><img src={{ match['away_icon'] }}></span>
+          <span class="teamName away">{{ match['away'] }}</span>
         </div>
-        </div>
-        
-    </body>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>

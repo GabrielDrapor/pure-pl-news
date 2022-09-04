@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, render_template
@@ -33,7 +34,7 @@ TEAM_ICON = {
 @app.route('/')
 def index():
     week, match_list = get_match_list()
-    return render_template('index.html', week=week, matches=match_list)
+    return render_template('index.html', week=week, matches=match_list, enumerate=enumerate)
 
 
 def get_match_list():
@@ -44,14 +45,19 @@ def get_match_list():
     week = soup.find('div', {"class": "week"}).text
     match_list = []
     for raw_match in raw_matches:
+        start_dt = datetime.fromtimestamp(int(raw_match.attrs['data-kickoff'])/1000)
+        start_date = start_dt.strftime('%b %d %a')
+        start_time = start_dt.strftime('%H:%M')
         home, away = [i.text.strip() for i in raw_match.find_all('span', {'class':'teamName'})]
         score = raw_match.find('span', {'class':'score'})
         match_list.append({
+            'date': start_date,
+            'time': start_time,
             'home': home,
             'home_icon': f"t{TEAM_ICON[home]}.png",
             'away': away,
             'away_icon': f"t{TEAM_ICON[away]}.png",
-            'score_html': score if score else "<span class='score'>-<span>-</span>-</span>",
+            'score_html': score,
         })
     return week, match_list
 
